@@ -1,0 +1,18 @@
+
+* 窗口管理
+| 快捷键     | 动作                 |
+|------------+----------------------|
+| Ctrl+Alt+H | 打开emacs            |
+| Ctrl+Alt+T | 打开chrome           |
+| Ctrl+Alt+N | 打开Windows Terminal |
+| Ctrl+Alt+S | 打开资源管理器       |
+| Win + 1    | Grid 1               |
+| Win + 2    | Grid 2               |
+| Win + 3    | Grid 3               |
+| Win + 4    | Grid 4               |
+| Win + 5    | Grid Center          |
+| Win + 6    | Grid Full Screen     |
+| Win + 7    | Custom Layout 1      |
+|------------+----------------------|
+
+
