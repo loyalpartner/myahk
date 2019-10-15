@@ -1,20 +1,21 @@
 
 * 窗口管理
-| 快捷键     | 动作                 |
-|------------+----------------------|
-| Ctrl+Alt+H | 打开emacs            |
-| Ctrl+Alt+T | 打开chrome           |
-| Ctrl+Alt+N | 打开Windows Terminal |
-| Ctrl+Alt+S | 打开资源管理器       |
-| Win + 1    | Grid 1               |
-| Win + 2    | Grid 2               |
-| Win + 3    | Grid 3               |
-| Win + 4    | Grid 4               |
-| Win + 5    | Grid Center          |
-| Win + 6    | Grid Full Screen     |
-| Win + 7    | Custom Layout 1      |
-|------------+----------------------|
-
+| 快捷键         | 动作                 |
+|----------------+----------------------|
+| Ctrl + Alt + H | 打开emacs            |
+| Ctrl + Alt + T | 打开chrome           |
+| Ctrl + Alt + N | 打开Windows Terminal |
+| Ctrl + Alt + S | 打开资源管理器       |
+| Ctrl + Alt + 1 | 移动窗口到桌面1      |
+| Ctrl + Alt + 2 | 移动窗口到桌面2      |
+| Win + 1        | Grid 1               |
+| Win + 2        | Grid 2               |
+| Win + 3        | Grid 3               |
+| Win + 4        | Grid 4               |
+| Win + 5        | Grid Center          |
+| Win + 6        | Grid Full Screen     |
+| Win + 7        | Custom Layout 1      |
+|----------------+----------------------|
 
 * Emacs Style Keybindings
 | 快捷键        | 说明             |
@@ -31,5 +32,3 @@
 | Alt + f       | Home             |
 | Alft + b      | Home             |
 | Alft + d      | 向后删除一个单词 |
-
-=======
