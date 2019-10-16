@@ -1,6 +1,5 @@
 ;;# -*- mode: ahk-mode; ahk-indentation: 2 -*-
 
-
 ^!h::
 send ^#1
 return

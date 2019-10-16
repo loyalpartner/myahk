@@ -18,7 +18,7 @@ emacs_key_map["!f"] := "^{Right}"
 emacs_key_map["!d"] := "^{Del}"
 
 
-blacklist := "i)^(emacs.exe|explorer.exe)$"
+blacklist := "i)^(emacs.exe|explorer.exe|windowsterminal.exe)$"
 
 #IF EmacsKeySwitch()
 EmacsKeySwitch()
@@ -56,6 +56,16 @@ reverse_mode := !reverse_mode
 
 if(reverse_mode)
   trayTip, ReverseMode, ReverseMode, 1
+return
+
+^f12::
+reload
+return
+
+;;; edit settings
+;;; ﻿RegWrite REG_SZ, HKCR, AutoHotkeyScript\Shell\Edit\Command,, "C:\Users\li\scoop\apps\emacs\26.3\bin\emacsclientw.exe" -n -a runemacs.exe "`%1"
+^f11::
+edit
 return
 
 #Include app.ahk

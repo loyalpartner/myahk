@@ -81,7 +81,8 @@ MoveWindowToGrid(1,-1,1,1)
 return
 
 $#7::
-
-MoveWindowToGrid(4,-1,2,2,"ahk_exe emacs.exe")
+MoveWindowToGrid(1,-1,2,2,"ahk_exe WindowsTerminal.exe")
+MoveWindowToGrid(2,-1,2,2,"ahk_exe Explorer.EXE ahk_class CabinetWClass")
 MoveWindowToGrid(3,-1,2,2,"ahk_exe chrome.exe")
+MoveWindowToGrid(4,-1,2,2,"ahk_exe emacs.exe")
 return
