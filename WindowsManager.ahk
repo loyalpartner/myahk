@@ -1,4 +1,6 @@
 ;;# -*- mode: ahk-mode; ahk-indentation: 2 -*-
+
+;;; 已经被 grid.ahk 替代
 GetCurrentMonitor()
 {
   SysGet, numberOfMonitors, MonitorCount
@@ -81,8 +83,10 @@ MoveWindowToGrid(1,-1,1,1)
 return
 
 $#7::
+DetectHiddenWindows, On
 MoveWindowToGrid(1,-1,2,2,"ahk_exe WindowsTerminal.exe")
 MoveWindowToGrid(2,-1,2,2,"ahk_exe Explorer.EXE ahk_class CabinetWClass")
 MoveWindowToGrid(3,-1,2,2,"ahk_exe chrome.exe")
 MoveWindowToGrid(4,-1,2,2,"ahk_exe emacs.exe")
+DetectHiddenWindows, Off
 return
