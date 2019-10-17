@@ -1,4 +1,4 @@
-;;# -*- mode: ahk-mode; ahk-indentation: 2 -*-
+;;# -*- mode: ahk; ahk-indentation: 2 -*-
 Class MonitorDetect{
   Current[]{
     get  {
@@ -30,8 +30,6 @@ Class Monitor{
   }
 }
 
-
-
 Class Grid{
   __New(row:=2, column:=2){
     this.row := row
@@ -47,7 +45,6 @@ Class Grid{
     x := column * width + monitor.left+10		;offest x
     y := row * height + monitor.top +10		;offset y
     WinMove,% WinTitle,,x,y,unitx*width-20, unity*height-20
-
   }
 
   MoveToMonitor(monitor,no){
