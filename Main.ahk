@@ -7,6 +7,7 @@ Menu, Tray, Icon,emacs.png
 ;;; 要不然会失效
 #Include CusorTail.ahk
 #Include Grid.ahk
+#Include TopMost.ahk
 
 wm := New Grid()
 currentMonitor := MonitorDetect.Current
@@ -82,6 +83,18 @@ wm.MoveAppTo(3,"ahk_exe chrome.exe")
 wm.MoveAppTo(4,"ahk_exe emacs.exe")
 
 return
+
+$^!,::
+ToggleTopMost()
+return
+
+; 透明度
+; 有时候相看其他窗口的文字，可是又被挡住了，
+; 这时候可以临时透明当前窗口查看被挡住的信息
+$^!.::
+TempTransparent()
+return
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; EmacsMode switch

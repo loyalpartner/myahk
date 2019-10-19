@@ -23,6 +23,8 @@
 | Win + 7        | Custom Layout 1      |
 | @TODO          | 关闭窗口             |
 | @TODO          | 关闭干扰窗口         |
+| Ctrl + Alt + , | 置顶窗口             |
+| Ctrl + Alt + . | 临时透明窗口         |
 |----------------+----------------------|
 
 * Emacs Style Keybindings
