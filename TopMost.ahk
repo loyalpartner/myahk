@@ -13,5 +13,8 @@ TempTransparent(time=-5000){
 RestoreTransparent:
   WinSet, Transparent, 250, A
   return
+}
 
+CloseWindow(){
+  WinClose, A
 }

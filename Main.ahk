@@ -12,7 +12,7 @@ Menu, Tray, Icon,emacs.png
 wm := New Grid()
 currentMonitor := MonitorDetect.Current
 winposinfo := {}
-#Include EmacsKey.ahk
+;#Include EmacsKey.ahk
 #Include App.ahk
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -76,14 +76,12 @@ CusorTail()
 return
 
 $#7::
-
 wm.MoveAppTo(1,"ahk_exe WindowsTerminal.exe")
 wm.MoveAppTo(2,"ahk_exe Explorer.EXE ahk_class CabinetWClass")
 wm.MoveAppTo(3,"ahk_exe chrome.exe")
 wm.MoveAppTo(4,"ahk_exe emacs.exe")
-
 return
-
+r
 $^!,::
 ToggleTopMost()
 return
@@ -95,7 +93,9 @@ $^!.::
 TempTransparent()
 return
 
-
+$#'::
+CloseWindow()
+return
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; EmacsMode switch
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

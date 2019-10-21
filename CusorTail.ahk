@@ -1,6 +1,6 @@
 ;;# -*- mode: ahk; ahk-indentation: 2 -*-
 
-SetCursor(x,y) {
+SetCursor(x, y) {
   ;;; 多显示器要移动两次才能正确移动到指定位置
   DllCall("SetCursorPos", int, x, int, y)
   DllCall("SetCursorPos", int, x, int, y)

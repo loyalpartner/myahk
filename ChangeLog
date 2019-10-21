@@ -1,0 +1,5 @@
+2019-10-21  kaikai  <986374081@qq.com>
+
+	* Main.ahk
+	(winposinfo): 添加关闭窗口
+	(winposinfo): 顶部窗口预留一个图标位置，方便放置一些快捷方式

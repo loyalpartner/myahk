@@ -34,16 +34,17 @@ Class Grid{
   __New(row:=2, column:=2){
     this.row := row
     this.column := column
-
+    this.marginTop := 110 	;顶部预留一排图标
   }
 
+
   MoveToMonitorEx(monitor,no,unitx:=1,unity:=1,WinTitle:="A"){
-    width := monitor.width/this.row ;cell width
-    height:= monitor.heightEx/this.column ;cell height
-    row := floor((no-1) / this.row) ; Grid row
-    column := mod((no-1), this.column) ; Grid column
-    x := column * width + monitor.left+10		;offest x
-    y := row * height + monitor.top +10		;offset y
+    width := monitor.width/this.row			   ;cell width
+    height:= (monitor.heightEx-this.marginTop)/this.column ;cell height
+    row := floor((no-1) / this.row)			   ; Grid row
+    column := mod((no-1), this.column)	    ; Grid column
+    x := column * width + monitor.left + 10		   ;offest x
+    y := row * height + monitor.top  + 10 + this.marginTop		;offset y
     WinMove,% WinTitle,,x,y,unitx*width-20, unity*height-20
   }
 
@@ -67,6 +68,4 @@ Class Grid{
   FullScreen(){
     (New Grid(1,1)).MoveTo(1)
   }
-
-
 }

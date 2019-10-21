@@ -25,6 +25,7 @@
 | @TODO          | 关闭干扰窗口         |
 | Ctrl + Alt + , | 置顶窗口             |
 | Ctrl + Alt + . | 临时透明窗口         |
+| Win + '        | 关闭窗口             |
 |----------------+----------------------|
 
 * Emacs Style Keybindings
@@ -38,8 +39,7 @@
 | Ctrl + n      | down             |
 | Ctrl + d      | del              |
 | Ctrl + delete | 向前删除一个单词 |
-| Ctrl + n      | Home             |
-| Alt + f       | Home             |
-| Alft + b      | Home             |
-| Alft + d      | 向后删除一个单词 |
+| Alt + f       | 下一个单词       |
+| Alt + b       | 上一个单词       |
+| Alt + d       | 向后删除一个单词 |
 |---------------+------------------|
