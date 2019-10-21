@@ -8,6 +8,7 @@ Menu, Tray, Icon,emacs.png
 #Include CusorTail.ahk
 #Include Grid.ahk
 #Include TopMost.ahk
+;#Include Input.ahk
 
 wm := New Grid()
 currentMonitor := MonitorDetect.Current
@@ -81,7 +82,7 @@ wm.MoveAppTo(2,"ahk_exe Explorer.EXE ahk_class CabinetWClass")
 wm.MoveAppTo(3,"ahk_exe chrome.exe")
 wm.MoveAppTo(4,"ahk_exe emacs.exe")
 return
-r
+
 $^!,::
 ToggleTopMost()
 return

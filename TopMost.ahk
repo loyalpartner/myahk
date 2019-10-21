@@ -16,5 +16,5 @@ RestoreTransparent:
 }
 
 CloseWindow(){
-  WinClose, A
+  WinKill, A
 }
