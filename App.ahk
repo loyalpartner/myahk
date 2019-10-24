@@ -13,8 +13,8 @@ programs["^!n"] := ["WindowsTerminal.exe","ahk_exe WindowsTerminal.exe ahk_class
 programs["^!w"] := ["微信","ahk_exe WeChatStore.exe ahk_class WeChatMainWndForStore", "explorer.exe shell:Appsfolder\TencentWeChatLimited.forWindows10_sdtnhv12zgd7a!TencentWeChatLimited.forWindows10","chinese"]
 programs["^!g"] := ["虾米音乐","ahk_exe XiamiPC.exe ahk_class XiamiHome", "","chinese"]
 programs["^!r"] := ["hh.exe","ahk_exe hh.exe ahk_class HH Parent","C:\\Windows\\hh.exe",""]
+programs["^!m"] := ["Nuts.exe","ahk_exe Nuts.exe ahk_class Qt5QWindowIcon","C:\\Program Files (x86)\\Nuts\\Nuts.exe",""]
 programs["!Space"] := ["everything","ahk_exe Everything.exe ahk_class EVERYTHING", "C:\\Program Files\\Everything\\Everything.exe",""]
-
 
 Init()
 ;{{{
@@ -37,11 +37,7 @@ OpenOrShowApp:
   DetectHiddenWindows, On
   WinGet, windowsCount, Count,  %appClass%
 
-  ;msgbox % windowsCount
-  if windowsCount = 1
-  {
-    winActivate, % appClass
-  }
+  tail := Func("CursorTail")
 
   if (windowsCount <= 0 )
   {
@@ -49,14 +45,31 @@ OpenOrShowApp:
     return
   }
 
-  if (windowsCount > 1 ){
+  ;msgbox % windowsCount
+  if windowsCount = 1
+  {
+    ; hide and show window http://www.leporelo.eu/blog.aspx?id=hide-and-show-powershell-console-via-autohotkey
+    IfWinNotActive, % appClass
+    {
+      winActivate, %appClass%
+      winShow, %appClass%
+    }
+    else
+    {
+      WinHide, %appClass%
+      WinActivate ahk_class Shell_TrayWnd
+      return
+    }
+  }
+
+
+  ;;; 如果有多个窗口，来回显示该窗口
+  if (windowsCount > 1 )
+  {
     winActivateBottom, % appClass
   }
 
-  tail := Func("CursorTail")
   tail.call()
-
-  ;ChangeInput(appInputSource)
   Chinese()			; 激活输入法,至于输入法由小狼毫来选择
   return
 }
