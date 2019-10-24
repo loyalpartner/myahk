@@ -6,7 +6,7 @@ SetCursor(x, y) {
   DllCall("SetCursorPos", int, x, int, y)
 }
 
-CusorTail(){
+CursorTail(){
 
   sleep, 100
   WinGetPos, x, y, width , height,A

@@ -1,10 +1,11 @@
-;;# -*- mode: ahk; ahk-indentation: 2 -*-
+;;# -*- mode: ahk; ahk-indentation: 2;  -*-
 #singleinstance force
 
 Menu, Tray, Icon,emacs.png
 
 ;;; 注意 autohotey 变量的声明必须在热键定义之前
 ;;; 要不然会失效
+;;; TODO 改名
 #Include CusorTail.ahk
 #Include Grid.ahk
 #Include TopMost.ahk
@@ -42,38 +43,38 @@ return
 #!1::
 wm.MoveToMonitor(new Monitor(1),1)
 wm.Middle()
-CusorTail()
+CursorTail()
 return
 #!2::
 wm.MoveToMonitor(new Monitor(2),1)
 wm.Middle()
-CusorTail()
+CursorTail()
 return
 #1::
 wm.MoveTo(1)
-CusorTail()
+CursorTail()
 return
 #2::
 wm.MoveTo(2)
-CusorTail()
+CursorTail()
 return
 #3::
 wm.MoveTo(3)
-CusorTail()
+CursorTail()
 return
 #4::
 wm.MoveTo(4)
-CusorTail()
+CursorTail()
 return
 
 $#5::
 wm.Middle()
-CusorTail()
+CursorTail()
 return
 
 $#6::
 wm.FullScreen()
-CusorTail()
+CursorTail()
 return
 
 $#7::
@@ -97,6 +98,16 @@ return
 $#'::
 CloseWindow()
 return
+
+F7::
+GetProgramInfo()
+return
+
+#IfWinActive,ahk_exe everything.exe
+^1::
+Send {AppsKey}
+return
+#IfWinActive
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; EmacsMode switch
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -105,6 +116,5 @@ reverse_mode := !reverse_mode
 if(reverse_mode)
   trayTip, ReverseMode, ReverseMode, 1
 return
-
 
 ;#Include EmacsKey.ahk

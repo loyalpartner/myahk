@@ -1,3 +1,7 @@
+2019-10-24  kaikai  <986374081@qq.com>
+
+	* Main.ahk (winposinfo): 使用 Ctrl + 1 发送AppsKey,可以配合Everything搜索文件，然后用Emacs打开
+
 2019-10-21  kaikai  <986374081@qq.com>
 
 	* App.ahk:

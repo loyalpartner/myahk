@@ -16,5 +16,6 @@ RestoreTransparent:
 }
 
 CloseWindow(){
-  WinKill, A
+  WinGet, pid, PID, A
+  Process, Close, % pid
 }
