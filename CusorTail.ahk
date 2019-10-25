@@ -11,7 +11,12 @@ CursorTail(){
   sleep, 100
   WinGetPos, x, y, width , height,A
   monitor := MonitorDetect.Current
-  x1 :=  x + 300
+  x1 :=  x + width/3
   y1 :=  y+ 300
   SetCursor(x1,y1)
+  WinGet,name, ProcessName, A
+  name := StrReplace(name, ".exe" "")
+  ;; 增加语音提示
+  ;; https://autohotkey.com/board/topic/77686-text-to-speech-examples-for-autohotkey-v11/
+  ComObjCreate("SAPI.SpVoice").Speak(name)
 }

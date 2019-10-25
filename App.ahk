@@ -51,8 +51,8 @@ OpenOrShowApp:
     ; hide and show window http://www.leporelo.eu/blog.aspx?id=hide-and-show-powershell-console-via-autohotkey
     IfWinNotActive, % appClass
     {
-      winActivate, %appClass%
       winShow, %appClass%
+      winActivate, %appClass%
     }
     else
     {

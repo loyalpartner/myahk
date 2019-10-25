@@ -1,3 +1,7 @@
+2019-10-25  kaikai  <986374081@qq.com>
+
+	* CusorTail.ahk: 切换程序的时候获得语音提示
+
 2019-10-24  kaikai  <986374081@qq.com>
 
 	* App.ahk (OpenOrShowApp): 切换显示窗口的状态
