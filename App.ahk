@@ -69,7 +69,7 @@ OpenOrShowApp:
     winActivateBottom, % appClass
   }
 
-  tail.call()
+  tail.call("true")
   Chinese()			; 激活输入法,至于输入法由小狼毫来选择
   return
 }
