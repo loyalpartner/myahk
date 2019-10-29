@@ -20,13 +20,13 @@ winposinfo := {}
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; 重置配置和编辑配置文件 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-^f12::
+^!f12::
 reload
 return
 
 ;;; edit settings
 ;;; ﻿RegWrite REG_SZ, HKCR, AutoHotkeyScript\Shell\Edit\Command,, "C:\Users\li\scoop\apps\emacs\26.3\bin\emacsclientw.exe" -n -a runemacs.exe "`%1"
-^f11::
+^!f11::
 edit
 return
 
@@ -103,6 +103,9 @@ F7::
 GetProgramInfo()
 return
 
+; RWin::
+; Send {AppsKey}
+; return
 #IfWinActive,ahk_exe everything.exe
 ^1::
 Send {AppsKey}

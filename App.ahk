@@ -14,6 +14,7 @@ programs["^!w"] := ["微信","ahk_exe WeChatStore.exe ahk_class WeChatMainWndFor
 programs["^!g"] := ["虾米音乐","ahk_exe XiamiPC.exe ahk_class XiamiHome", "","chinese"]
 programs["^!r"] := ["hh.exe","ahk_exe hh.exe ahk_class HH Parent","C:\\Windows\\hh.exe",""]
 programs["^!m"] := ["Nuts.exe","ahk_exe Nuts.exe ahk_class Qt5QWindowIcon","C:\\Program Files (x86)\\Nuts\\Nuts.exe",""]
+programs["^!c"] := ["anki.exe","ahk_exe anki.exe ahk_class Qt5QWindowIcon","C:\\Program Files\\Anki\\anki.exe",""]
 programs["!Space"] := ["everything","ahk_exe Everything.exe ahk_class EVERYTHING", "C:\\Program Files\\Everything\\Everything.exe",""]
 
 Init()
