@@ -8,27 +8,31 @@
 
 
 * 窗口管理
-| 快捷键         | 动作                 |
-|----------------+----------------------|
-| Ctrl + Alt + H | 打开emacs            |
-| Ctrl + Alt + T | 打开chrome           |
-| Ctrl + Alt + N | 打开Windows Terminal |
-| Ctrl + Alt + S | 打开资源管理器       |
-| Ctrl + Alt + 1 | 移动窗口到桌面1      |
-| Ctrl + Alt + 2 | 移动窗口到桌面2      |
-| Win + 1        | Grid 1               |
-| Win + 2        | Grid 2               |
-| Win + 3        | Grid 3               |
-| Win + 4        | Grid 4               |
-| Win + 5        | Grid Center          |
-| Win + 6        | Grid Full Screen     |
-| Win + 7        | Custom Layout 1      |
-| @TODO          | 关闭窗口             |
-| @TODO          | 关闭干扰窗口         |
-| Ctrl + Alt + , | 置顶窗口             |
-| Ctrl + Alt + . | 临时透明窗口         |
-| Win + '        | 关闭窗口             |
-|----------------+----------------------|
+| 快捷键         | 动作                  |
+|----------------+-----------------------|
+| Ctrl + Alt + H | 打开emacs             |
+| Ctrl + Alt + T | 打开chrome            |
+| Ctrl + Alt + N | 打开Windows Terminal  |
+| Ctrl + Alt + S | 打开资源管理器        |
+| Ctrl + Alt + 1 | 移动窗口到桌面1       |
+| Ctrl + Alt + 2 | 移动窗口到桌面2       |
+| Win + 1        | Grid 2x4              |
+| Win + 2        | Grid 2x2              |
+| Win + 3        | Grid next             |
+| Win + 4        | Grid prev             |
+| Win + 5        | Grid Center           |
+| Win + 6        | Grid Full Screen      |
+| Win + 7        | Grid 2x4 7            |
+| Win + 8        | Grid 2x4 8            |
+| Win + 9        | Load layount          |
+| @TODO          | 关闭窗口              |
+| @TODO          | 关闭干扰窗口          |
+| Ctrl + Alt + , | 置顶窗口              |
+| Ctrl + Alt + . | 临时透明窗口          |
+| Win + '        | 关闭窗口              |
+| Alt + 1        | scroll up in chrome   |
+| Alt + 2        | scroll down in chrome |
+|----------------+-----------------------|
 
 
 * Emacs Style Keybindings

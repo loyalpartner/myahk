@@ -1,3 +1,7 @@
+2019-11-01  kaikai  <986374081@qq.com>
+
+	* Main.ahk (winposinfo): 增加窗口跳转功能
+
 2019-10-29  kaikai  <986374081@qq.com>
 
 	* Main.ahk (winposinfo): 更改刷新和编辑配置文件快捷键

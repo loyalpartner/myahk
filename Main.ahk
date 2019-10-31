@@ -12,6 +12,9 @@ Menu, Tray, Icon,emacs.png
 ;#Include Input.ahk
 
 wm := New Grid()
+wm2x4 := New Grid(2,4)
+grid := wm
+
 currentMonitor := MonitorDetect.Current
 winposinfo := {}
 ;#Include EmacsKey.ahk
@@ -50,21 +53,23 @@ wm.MoveToMonitor(new Monitor(2),1)
 wm.Middle()
 CursorTail()
 return
-#1::
-wm.MoveTo(1)
-CursorTail()
-return
-#2::
-wm.MoveTo(2)
-CursorTail()
-return
+
+
 #3::
-wm.MoveTo(3)
+grid.Prev()
 CursorTail()
 return
 #4::
-wm.MoveTo(4)
+grid.Next()
 CursorTail()
+return
+
+#include WindowsManager.ahk
+#1::
+WaitKeyNo(wm2x4, "2x4")
+return
+#2::
+WaitKeyNo(wm, "2x2")
 return
 
 $#5::
@@ -77,13 +82,22 @@ wm.FullScreen()
 CursorTail()
 return
 
-$#7::
-wm.MoveAppTo(1,"ahk_exe WindowsTerminal.exe")
-wm.MoveAppTo(2,"ahk_exe Explorer.EXE ahk_class CabinetWClass")
+$#9::
+wm.MoveAppTo(2,"ahk_exe WindowsTerminal.exe")
+wm.MoveAppTo(1,"ahk_exe Explorer.EXE ahk_class CabinetWClass")
 wm.MoveAppTo(3,"ahk_exe chrome.exe")
-wm.MoveAppTo(4,"ahk_exe emacs.exe")
+wm2x4.MoveAppTo(8,"ahk_exe emacs.exe")
 return
 
+$#7::
+wm2x4.MoveTo(7)
+CursorTail()
+return
+
+$#8::
+wm2x4.MoveTo(8)
+CursorTail()
+return
 $^!,::
 ToggleTopMost()
 return
@@ -111,6 +125,21 @@ return
 Send {AppsKey}
 return
 #IfWinActive
+#IfWinActive,ahk_exe chrome.exe
+^n::
+Send {Down}
+return
+^p::
+Send {up}
+return
+#IfWinActive
+
+$!2::
+ControlClick,,ahk_exe chrome.exe,,WheelDown
+return
+$!1::
+ControlClick,,ahk_exe chrome.exe,,WheelUp
+return
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; EmacsMode switch
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

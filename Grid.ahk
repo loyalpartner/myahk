@@ -26,6 +26,7 @@ Class Monitor{
     this.width := monAreaRight - monAreaLeft
     this.height := monAreaBottom - monAreaTop
     WinGetPos,,,,h, ahk_class Shell_TrayWnd
+    this.taskbarHeight := h
     this.heightEx := this.height - h
   }
 }
@@ -37,11 +38,40 @@ Class Grid{
     this.marginTop := 110 	;顶部预留一排图标
   }
 
+  GetWindowNo(){
+    WinGetPos,X,Y, , ,A
+    currentMonitor := MonitorDetect.Current
+    width := currentMonitor.width/this.column			   ;cell width
+    height:= (currentMonitor.heightEx-this.marginTop)/this.row ;cell height
+
+
+    a := Ceil(X/width)
+    b := Floor((Y-currentMonitor.taskbarHeight)/height)
+    return b * this.column + a
+  }
+
+  Next(){
+    no := this.GetWindowNo()
+    gridCount := this.column * this.row
+    if(no >= gridCount)
+      no := 0
+    no := no + 1
+    this.MoveTo(no)
+  }
+
+  Prev(){
+    no := this.GetWindowNo()
+    gridCount := this.column * this.row
+    if(no <= 1)
+      no := gridCount + 1
+    no := no - 1
+    this.MoveTo(no)
+  }
 
   MoveToMonitorEx(monitor,no,unitx:=1,unity:=1,WinTitle:="A"){
-    width := monitor.width/this.row			   ;cell width
-    height:= (monitor.heightEx-this.marginTop)/this.column ;cell height
-    row := floor((no-1) / this.row)			   ; Grid row
+    width := monitor.width/this.column			   ;cell width
+    height:= (monitor.heightEx-this.marginTop)/this.row ;cell height
+    row := floor((no-1) / this.column)			   ; Grid row
     column := mod((no-1), this.column)	    ; Grid column
     x := column * width + monitor.left + 10		   ;offest x
     y := row * height + monitor.top  + 10 + this.marginTop		;offset y
