@@ -85,7 +85,7 @@ return
 $#9::
 wm.MoveAppTo(2,"ahk_exe WindowsTerminal.exe")
 wm.MoveAppTo(1,"ahk_exe Explorer.EXE ahk_class CabinetWClass")
-wm.MoveAppTo(3,"ahk_exe chrome.exe")
+wm.MoveAppTo(3,"ahk_class Chrome_WidgetWin_1")
 wm2x4.MoveAppTo(8,"ahk_exe emacs.exe")
 return
 
@@ -125,7 +125,7 @@ return
 Send {AppsKey}
 return
 #IfWinActive
-#IfWinActive,ahk_exe chrome.exe
+#IfWinActive,ahk_class Chrome_WidgetWin_1
 ^n::
 Send {Down}
 return
@@ -135,10 +135,10 @@ return
 #IfWinActive
 
 $!2::
-ControlClick,,ahk_exe chrome.exe,,WheelDown
+ControlClick,,ahk_class Chrome_WidgetWin_1,,WheelDown
 return
 $!1::
-ControlClick,,ahk_exe chrome.exe,,WheelUp
+ControlClick,,ahk_class Chrome_WidgetWin_1,,WheelUp
 return
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; EmacsMode switch
