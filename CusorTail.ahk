@@ -15,7 +15,7 @@ CursorTail(speak:=false){
   x1 :=  x + width/3
   y1 :=  y+ height/3
   SetCursor(x1,y1)
-  
+
   WinGet,nextProcessName, ProcessName, A
   nextProcessName := StrReplace(nextProcessName, ".exe" "")
   if speak = true
