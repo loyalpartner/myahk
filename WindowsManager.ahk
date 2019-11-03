@@ -1,23 +1,44 @@
 ;;# -*- mode: ahk-mode; ahk-indentation: 2 -*-
+#SingleInstance
 
-WaitKeyNo(wm, type := "2x2")
+
+ControlWindow(params)
 {
-  global grid := wm
-  Loop, 8
+  wm := params[1]
+  char := params[2]
+
+  if(char="n")
   {
-    k := Chr(A_Index + 48)
-    Hotkey % k, MoveTo
-    Hotkey % k, On
+    wm.Right()
+    CursorTail()
   }
-  Run  , % "Speaker.ahk " . type
-return
-MoveTo:
-  grid.MoveTo(a_thishotkey)
-  CursorTail()
-  Loop, 8
+  else if (char="h")
   {
-    k := Chr(A_Index + 48)
-    Hotkey % k, off
+    wm.Left()
+    CursorTail()
   }
-  return
+  else if (char="c")
+  {
+    wm.Up()
+    CursorTail()
+  }
+  else if (char="t")
+  {
+    wm.Down()
+    CursorTail()
+  }
+  else if (char="u")
+  {
+    wm.Middle()
+    CursorTail()
+  }
+  else if (char="e")
+  {
+    wm.FullScreen()
+    CursorTail()
+  }
+  else{
+    wm.MoveTo(char)
+    CursorTail()
+ }
 }

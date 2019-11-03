@@ -32,10 +32,20 @@ Class Monitor{
 }
 
 Class Grid{
+
+
+
   __New(row:=2, column:=2){
     this.row := row
     this.column := column
     this.marginTop := 110 	;顶部预留一排图标
+  }
+
+  gridCount
+  {
+    get {
+      return this.row * this.column
+    }
   }
 
   GetWindowNo(){
@@ -50,21 +60,35 @@ Class Grid{
     return b * this.column + a
   }
 
-  Next(){
+  Right(){
     no := this.GetWindowNo()
-    gridCount := this.column * this.row
-    if(no >= gridCount)
+    if(no >= this.gridCount)
       no := 0
     no := no + 1
     this.MoveTo(no)
   }
 
-  Prev(){
+  Left(){
     no := this.GetWindowNo()
-    gridCount := this.column * this.row
     if(no <= 1)
-      no := gridCount + 1
+      no := this.gridCount + 1
     no := no - 1
+    this.MoveTo(no)
+  }
+
+  Up(){
+    no := this.GetWindowNo()
+    no := no - this.column
+    if(no <= 1)
+      no := 1
+    this.MoveTo(no)
+  }
+
+  Down(){
+    no := this.GetWindowNo()
+    no := no + this.column
+    if (no >= this.gridCount)
+      no := this.gridCount
     this.MoveTo(no)
   }
 
@@ -79,15 +103,19 @@ Class Grid{
   }
 
   MoveToMonitor(monitor,no){
-    this.MoveToMonitorEx(monitor,no,1,1)
+    if (no > 0 && no <= this.row * this.column)
+      this.MoveToMonitorEx(monitor,no,1,1)
   }
 
-  MoveTo(no){
-    this.MoveToMonitor(MonitorDetect.Current,no)
+  MoveTo(no)
+  {
+    if (no > 0 && no <= this.row * this.column)
+      this.MoveToMonitor(MonitorDetect.Current,no)
   }
 
   MoveAppTo(no,winTitle){
-    this.MoveToMonitorEx( MonitorDetect.Current,no,1,1,winTitle)
+    if (no > 0 && no <= this.row * this.column)
+      this.MoveToMonitorEx( MonitorDetect.Current,no,1,1,winTitle)
   }
 
 

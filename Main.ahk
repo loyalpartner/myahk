@@ -6,6 +6,7 @@ Menu, Tray, Icon,emacs.png
 ;;; 注意 autohotey 变量的声明必须在热键定义之前
 ;;; 要不然会失效
 ;;; TODO 改名
+#Include Core.ahk
 #Include CusorTail.ahk
 #Include Grid.ahk
 #Include TopMost.ahk
@@ -54,22 +55,34 @@ wm.Middle()
 CursorTail()
 return
 
+#include WindowsManager.ahk
+
+!Tab::
+WaitChar(Func("SwitchApp"),[])
+return
+
+#o::
+KeyChordUntilQ(Func("ControlWindow"), [wm2x4])
+return
+
+#1::
+wm.MoveTo(1)
+CursorTail()
+return
+
+#2::
+wm.MoveTo(2)
+CursorTail()
+return
 
 #3::
-grid.Prev()
-CursorTail()
-return
-#4::
-grid.Next()
+wm.MoveTo(3)
 CursorTail()
 return
 
-#include WindowsManager.ahk
-#1::
-WaitKeyNo(wm2x4, "2x4")
-return
-#2::
-WaitKeyNo(wm, "2x2")
+#4::
+wm.MoveTo(4)
+CursorTail()
 return
 
 $#5::

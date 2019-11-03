@@ -1,4 +1,36 @@
 ;;# -*- mode: ahk; ahk-indentation: 2 -*-
+CreateGUI() {
+
+        global
+    Gui, +AlwaysOnTop -Caption +Owner +LastFound +E0x20
+    Gui, Margin, 0, 0
+    Gui, Color, Black
+    Gui, Font, cWhite s50 bold, Arial
+    Gui, Add, Text, vHotkeyText Center y20
+
+    WinSet, Transparent, 200
+}
+
+ShowIndicator() {
+    WinGetPos, x, y, width, height, A
+    if !x
+	throw
+
+    text_w := (ActWin_W > A_ScreenWidth) ? A_ScreenWidth : ActWin_W
+    GuiControl,     , HotkeyText, ^
+    GuiControl, Move, HotkeyText, w100 Center
+
+
+    gui_x := x + width/2 - 100
+    gui_y := y + height/2 - 150
+    Gui, Show, NoActivate x%gui_x% y%gui_y% h100 w100
+
+    SetTimer HideGui, 2000
+}
+CreateGUI()
+HideGUI() {
+    Gui, Hide
+}
 
 
 SetCursor(x, y) {
@@ -10,6 +42,7 @@ SetCursor(x, y) {
 CursorTail(speak:=false){
 
   sleep, 30
+  ShowIndicator()
   WinGetPos, x, y, width , height,A
   monitor := MonitorDetect.Current
   x1 :=  x + width/3

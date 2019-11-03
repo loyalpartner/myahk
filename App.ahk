@@ -21,19 +21,14 @@ programs["^!v"] := ["Kindle.exe","ahk_exe Kindle.exe ahk_class Qt5QWindowIcon","
 programs["^!z"] :=["ApplicationFrameHost.exe","ahk_exe ApplicationFrameHost.exe ahk_class ApplicationFrameWindow","explorer.exe shell:Appsfolder\Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe!App","便笺"]
 programs["!Space"] := ["everything","ahk_exe Everything.exe ahk_class EVERYTHING", "C:\\Program Files\\Everything\\Everything.exe",""]
 
-Init()
-;{{{
-Init(){
+SwitchApp(params){
   global programs
-  global tail
+  key := "^!" . params[1]
+  app := programs[key]
+  OpenOrShowApp(app)
+}
 
-  for i,v in programs
-  {
-    Hotkey, % i, OpenOrShowApp
-  }
-  return
-OpenOrShowApp:
-  app := programs[a_thishotkey]
+OpenOrShowApp(app){
   appTitle := app[4]
   winTitle := appTitle . " " . app[2]
   appPath := app[3]
@@ -75,6 +70,23 @@ OpenOrShowApp:
 
   tail.call("true")
   Chinese()			; 激活输入法,至于输入法由小狼毫来选择
+
+}
+
+Init()
+;{{{
+Init(){
+  global programs
+  global tail
+
+  for i,v in programs
+  {
+    Hotkey, % i, OpenOrShowApp
+  }
+  return
+OpenOrShowApp:
+  app := programs[a_thishotkey]
+  OpenOrShowApp(app)
   return
 }
 ;}}}
