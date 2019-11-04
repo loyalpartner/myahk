@@ -37,6 +37,14 @@ ControlWindow(params)
     wm.FullScreen()
     CursorTail()
   }
+  else if (char = "g")
+  {
+    wm.MoveToMonitor(MonitorDetect.Prev, wm.GetWindowNo())
+  }
+  else if (char = "r")
+  {
+    wm.MoveToMonitor(MonitorDetect.Prev,wm.GetWindowNo())
+  }
   else{
     wm.MoveTo(char)
     CursorTail()

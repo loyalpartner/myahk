@@ -1,5 +1,6 @@
 ;;# -*- mode: ahk; ahk-indentation: 2 -*-
 Class MonitorDetect{
+
   Current[]{
     get  {
       SysGet, numberOfMonitors, MonitorCount
@@ -13,7 +14,22 @@ Class MonitorDetect{
 	  return New Monitor(A_Index)
       }
     }
+  }
 
+  Next{
+    get{
+      SysGet, count, MonitorCount
+      currentNo := this.Current.no
+      return New Monitor(currentNo == count ? 1 : currentNo + 1)
+    }
+  }
+
+  Prev{
+    get{
+      SysGet, count, MonitorCount
+      currentNo := this.Current.no
+      return New Monitor(currentNo == 1 ? count : currentNo -1)
+    }
   }
 }
 
@@ -32,8 +48,6 @@ Class Monitor{
 }
 
 Class Grid{
-
-
 
   __New(row:=2, column:=2){
     this.row := row
@@ -54,41 +68,38 @@ Class Grid{
     width := currentMonitor.width/this.column			   ;cell width
     height:= (currentMonitor.heightEx-this.marginTop)/this.row ;cell height
 
-
-    a := Ceil(X/width)
-    b := Floor((Y-currentMonitor.taskbarHeight)/height)
+    ; msgbox % width . "-" . height
+    ; msgbox % a . "-" . b . "-"
+    a := Ceil((X-currentMonitor.left)/width)
+    b := Floor((Y-currentMonitor.top-currentMonitor.taskbarHeight)/height)
     return b * this.column + a
   }
 
   Right(){
     no := this.GetWindowNo()
-    if(no >= this.gridCount)
-      no := 0
-    no := no + 1
+    ; no := no > this.gridCount ? 1 : no
+    no := mod(no, this.gridCount) + 1
     this.MoveTo(no)
   }
 
+  ;; autohotkey 负数取模和预期不一致
+  ;; 使用 ?: 替换
   Left(){
-    no := this.GetWindowNo()
-    if(no <= 1)
-      no := this.gridCount + 1
-    no := no - 1
+    no := this.GetWindowNo() - 1
+    no := no<1 ? this.gridCount : no
+    ;no := Mod(no, this.gridCount)
     this.MoveTo(no)
   }
 
   Up(){
-    no := this.GetWindowNo()
-    no := no - this.column
-    if(no <= 1)
-      no := 1
+    no := this.GetWindowNo() - this.column
+    no := Max(no, 1)
     this.MoveTo(no)
   }
 
   Down(){
-    no := this.GetWindowNo()
-    no := no + this.column
-    if (no >= this.gridCount)
-      no := this.gridCount
+    no := this.GetWindowNo() + this.column
+    no := Min(no, this.gridCount)
     this.MoveTo(no)
   }
 

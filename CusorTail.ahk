@@ -25,7 +25,7 @@ ShowIndicator() {
     gui_y := y + height/2 - 150
     Gui, Show, NoActivate x%gui_x% y%gui_y% h100 w100
 
-    SetTimer HideGui, 2000
+    SetTimer HideGui, 500
 }
 CreateGUI()
 HideGUI() {
@@ -40,9 +40,9 @@ SetCursor(x, y) {
 }
 
 CursorTail(speak:=false){
-
+  HideGUI()
   sleep, 30
-  ShowIndicator()
+
   WinGetPos, x, y, width , height,A
   monitor := MonitorDetect.Current
   x1 :=  x + width/3
@@ -51,6 +51,7 @@ CursorTail(speak:=false){
 
   WinGet,nextProcessName, ProcessName, A
   nextProcessName := StrReplace(nextProcessName, ".exe" "")
+  ShowIndicator()
   if speak = true
   {
     ;; 增加语音提示

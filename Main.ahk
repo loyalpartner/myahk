@@ -45,13 +45,13 @@ return
 ; |---+---| ;
 ;;;;;;;;;;;;;
 #!1::
-wm.MoveToMonitor(new Monitor(1),1)
-wm.Middle()
+wm.MoveToMonitor(MonitorDetect.Prev,1)
+; wm.Middle()
 CursorTail()
 return
 #!2::
-wm.MoveToMonitor(new Monitor(2),1)
-wm.Middle()
+wm.MoveToMonitor(MonitorDetect.Next,1)
+; wm.Middle()
 CursorTail()
 return
 
@@ -59,6 +59,11 @@ return
 
 !Tab::
 WaitChar(Func("SwitchApp"),[])
+return
+
+; test
+#a::
+msgbox % Mod(-12,8)
 return
 
 #o::
