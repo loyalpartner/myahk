@@ -10,6 +10,7 @@ Menu, Tray, Icon,emacs.png
 #Include CusorTail.ahk
 #Include Grid.ahk
 #Include TopMost.ahk
+#Include WindowsManager.ahk
 ;#Include Input.ahk
 
 wm := New Grid()
@@ -55,8 +56,6 @@ wm.MoveToMonitor(MonitorDetect.Next,1)
 CursorTail()
 return
 
-#include WindowsManager.ahk
-
 !Tab::
 WaitChar(Func("SwitchApp"),[])
 return
@@ -67,7 +66,7 @@ msgbox % Mod(-12,8)
 return
 
 #o::
-KeyChordUntilQ(Func("ControlWindow"), [wm2x4])
+KeyChordUntilEndChar(Func("ControlWindow"), [wm2x4])
 return
 
 #1::

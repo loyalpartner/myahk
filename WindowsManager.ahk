@@ -1,51 +1,32 @@
 ;;# -*- mode: ahk-mode; ahk-indentation: 2 -*-
 #SingleInstance
 
+global actionMap := {}
+actionMap["c"] := "Up"
+actionMap["t"] := "Down"
+actionMap["h"] := "Left"
+actionMap["n"] := "Right"
+actionMap["u"] := "Middle"
+actionMap["e"] := "FullScreen"
+actionMap["g"] := "PrevMonitor"
+actionMap["r"] := "NextMonitor"
 
 ControlWindow(params)
 {
+  global actionMap
+
   wm := params[1]
   char := params[2]
-
-  if(char="n")
+  action := actionMap[char]
+  ; msgbox % action " -" actionMap["c"]
+  if (action)
   {
-    wm.Right()
+    OutputDebug, % action
+    ObjBindMethod(wm, action).call()
     CursorTail()
   }
-  else if (char="h")
+  else
   {
-    wm.Left()
-    CursorTail()
-  }
-  else if (char="c")
-  {
-    wm.Up()
-    CursorTail()
-  }
-  else if (char="t")
-  {
-    wm.Down()
-    CursorTail()
-  }
-  else if (char="u")
-  {
-    wm.Middle()
-    CursorTail()
-  }
-  else if (char="e")
-  {
-    wm.FullScreen()
-    CursorTail()
-  }
-  else if (char = "g")
-  {
-    wm.MoveToMonitor(MonitorDetect.Prev, wm.GetWindowNo())
-  }
-  else if (char = "r")
-  {
-    wm.MoveToMonitor(MonitorDetect.Prev,wm.GetWindowNo())
-  }
-  else{
     wm.MoveTo(char)
     CursorTail()
  }

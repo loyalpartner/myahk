@@ -13,13 +13,13 @@ WaitChar(callback, params){
   callback.call(params)
 }
 
-KeyChordUntilQ(callback, params){
+KeyChordUntilEndChar(callback, params){
 
   Loop
   {
     Input, Key, L1
     params.Push(Key)
-    If( key = "q" || key = "s" || key = Chr(27))
+    If(key = "a" || key = "s" || key = Chr(27))
       break
     callback.call(params)
     params.Pop()

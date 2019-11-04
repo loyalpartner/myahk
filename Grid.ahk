@@ -1,4 +1,40 @@
 ;;# -*- mode: ahk; ahk-indentation: 2 -*-
+CreateGUI() {
+
+        global
+    Gui, +AlwaysOnTop -Caption +Owner +LastFound +E0x20
+    Gui, Margin, 0, 0
+    Gui, Color, Black
+    Gui, Font, cWhite s50 bold, Arial
+    Gui, Add, Text, vHotkeyText Center y20
+
+    WinSet, Transparent, 200
+}
+
+ShowIndicator(text:="^") {
+    WinGetPos, x, y, width, height, A
+    if !x
+	throw
+
+    text_w := (ActWin_W > A_ScreenWidth) ? A_ScreenWidth : ActWin_W
+    GuiControl,     , HotkeyText, % text
+    GuiControl, Move, HotkeyText, w100 Center
+
+
+    gui_x := x + width/2 - 100
+    gui_y := y + height/2 - 150
+    Gui, Show, NoActivate x%gui_x% y%gui_y% h100 w100
+
+    SetTimer HideGui, 500
+}
+
+CreateGUI()
+HideGUI() {
+    Gui, Hide
+}
+
+
+
 Class MonitorDetect{
 
   Current[]{
@@ -93,6 +129,7 @@ Class Grid{
     no := this.GetWindowNo() - this.column
     no := Max(no, 1)
     this.MoveTo(no)
+    ShowIndicator(this.GetWindowNo())
   }
 
   Down(){
@@ -109,24 +146,36 @@ Class Grid{
     x := column * width + monitor.left + 10		   ;offest x
     y := row * height + monitor.top  + 10 + this.marginTop		;offset y
     WinMove,% WinTitle,,x,y,unitx*width-20, unity*height-20
+    ShowIndicator(this.GetWindowNo())
   }
 
-  MoveToMonitor(monitor,no){
+  MoveToMonitor(monitor,no)  {
     if (no > 0 && no <= this.row * this.column)
+    {
       this.MoveToMonitorEx(monitor,no,1,1)
+    }
   }
 
-  MoveTo(no)
-  {
+  NextMonitor(){
+    this.MoveToMonitor(MonitorDetect.Next, this.GetWindowNo())
+  }
+
+  PrevMonitor(){
+    this.MoveToMonitor(MonitorDetect.Prev, this.GetWindowNo())
+  }
+
+  MoveTo(no){
     if (no > 0 && no <= this.row * this.column)
+    {
       this.MoveToMonitor(MonitorDetect.Current,no)
+    }
   }
 
   MoveAppTo(no,winTitle){
-    if (no > 0 && no <= this.row * this.column)
+    if (no > 0 && no <= this.row * this.column){
       this.MoveToMonitorEx( MonitorDetect.Current,no,1,1,winTitle)
+    }
   }
-
 
   Middle(){
     (New Grid(8,8)).MoveToMonitorEx(MonitorDetect.Current,10,6,6)
