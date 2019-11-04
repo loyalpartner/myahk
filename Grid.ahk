@@ -68,8 +68,6 @@ Class Grid{
     width := currentMonitor.width/this.column			   ;cell width
     height:= (currentMonitor.heightEx-this.marginTop)/this.row ;cell height
 
-    ; msgbox % width . "-" . height
-    ; msgbox % a . "-" . b . "-"
     a := Ceil((X-currentMonitor.left)/width)
     b := Floor((Y-currentMonitor.top-currentMonitor.taskbarHeight)/height)
     return b * this.column + a

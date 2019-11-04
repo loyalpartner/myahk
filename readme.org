@@ -1,3 +1,11 @@
+用autohotkey管理windows
+
+功能：
+- 快速移动窗口
+- 模式键 可定义各种模式（需要自行配置）
+- 预定义程序的输入法
+- 程序切换语音和图标提示
+
 * 基本命令
 | 快捷键           | 动作                               |
 |------------------+------------------------------------|
@@ -7,19 +15,50 @@
 |------------------+------------------------------------|
 
 
-* 窗口管理
+* 窗口移动模式
+启动快捷键 Win + o, 默认显示器为 2x4(2行4列)
+| 模式快捷键 | 动作         |
+|------------+--------------|
+| 1-9        | Goto Grid no |
+| c          | Up           |
+| t          | Down         |
+| h          | Left         |
+| n          | Right        |
+| g          | Prev Monitor |
+| r          | Next Monitor |
+| Esc        |              |
+| q          |  exit        |
+| s          |              |
+|------------+--------------|
+
+* 应用切换模式
+启动快捷键 Alt + Tab
+| 模式快捷键 | 动作             |
+|------------+------------------|
+| h          | emacs            |
+| t          | 资源管理器       |
+| n          | Windows Terminal |
+| s          | Edge             |
+| g          | 虾米             |
+| c          | anki             |
+| r          | help file        |
+| l          |                  |
+| m          | ...              |
+| w          | 微信             |
+| v          | Kindle           |
+| z          | 便签             |
+|------------+------------------|
+
+* 其他
 | 快捷键         | 动作                  |
 |----------------+-----------------------|
 | Ctrl + Alt + H | 打开emacs             |
-| Ctrl + Alt + T | 打开chrome            |
+| Ctrl + Alt + S | 打开chrome            |
 | Ctrl + Alt + N | 打开Windows Terminal  |
-| Ctrl + Alt + S | 打开资源管理器        |
-| Ctrl + Alt + 1 | 移动窗口到桌面1       |
-| Ctrl + Alt + 2 | 移动窗口到桌面2       |
-| Win + 1        | Grid 2x4              |
-| Win + 2        | Grid 2x2              |
-| Win + 3        | Grid next             |
-| Win + 4        | Grid prev             |
+| Ctrl + Alt + T | 打开资源管理器        |
+| Ctrl + Alt + G | 虾米                  |
+| Ctrl + Alt + C | anki                  |
+| Win + 1-4      | Grid 2x2 1-4          |
 | Win + 5        | Grid Center           |
 | Win + 6        | Grid Full Screen      |
 | Win + 7        | Grid 2x4 7            |
