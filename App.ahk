@@ -21,6 +21,10 @@ programs["^!v"] := ["Kindle.exe","ahk_exe Kindle.exe ahk_class Qt5QWindowIcon","
 programs["^!z"] :=["ApplicationFrameHost.exe","ahk_exe ApplicationFrameHost.exe ahk_class ApplicationFrameWindow","explorer.exe shell:Appsfolder\Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe!App","便笺"]
 programs["!Space"] := ["everything","ahk_exe Everything.exe ahk_class EVERYTHING", "C:\\Program Files\\Everything\\Everything.exe",""]
 
+tail := Func("CursorTail")
+chinese := Func("Chinese")
+showIndicator := Func("ShowIndicator")
+
 SwitchApp(params){
   global programs
   key := "^!" . params[1]
@@ -28,16 +32,54 @@ SwitchApp(params){
   OpenOrShowApp(app)
 }
 
+ShowApp(winTitle){
+  global tail, chinese, showIndicator
+  OutputDebug, % "Show window "  winTitle
+  ; 理想情况应该是调用 WinActivate ，激活窗口
+  ; 可是虾米音乐显示不出来
+  winShow, %winTitle%
+  winActivate, %winTitle%
+  showIndicator.call()
+  tail.call("true")
+  chinese.call()
+}
+
+ShowOrHideApp(winTitle){
+  global lastAppWinTitle
+    ; hide and show window http://www.leporelo.eu/blog.aspx?id=hide-and-show-powershell-console-via-autohotkey
+    IfWinNotActive, % winTitle
+    {
+      lastAppWinTitle :=   GetWintitleActive()
+      ShowApp(winTitle)
+    }
+    else
+    {
+      OutputDebug, % "Hide window "  winTitle
+      WinHide, %winTitle%
+      ;WinActivate ahk_class Shell_TrayWnd
+      ;OutputDebug, % "lastAppWinTitle " lastAppWinTitle
+      ShowApp(lastAppWinTitle)
+    }
+}
+
+IsSameApp(appTitle1, appTitle2){
+  StringGetPos, pos, % appTitle2, % appTitle1
+  return pos >=0
+}
+
 OpenOrShowApp(app){
+
+  global lastAppWinTitle
+
   appTitle := app[4]
-  winTitle := appTitle . " " . app[2]
+  winTitle := appTitle ? appTitle . " " . app[2]: app[2]
   appPath := app[3]
   ;appInputSource := app[4]
 
+  OutputDebug, "start open or show app"
   DetectHiddenWindows, On
   WinGet, windowsCount, Count,  %winTitle%
-
-  tail := Func("CursorTail")
+  OutputDebug, % winTitle " match " windowsCount
 
   if (windowsCount <= 0 )
   {
@@ -45,31 +87,33 @@ OpenOrShowApp(app){
     return
   }
 
-  if windowsCount = 1
+  if (windowsCount = 1)
   {
-    ; hide and show window http://www.leporelo.eu/blog.aspx?id=hide-and-show-powershell-console-via-autohotkey
-    IfWinNotActive, % winTitle
-    {
-      winShow, %winTitle%
-      winActivate, %winTitle%
-    }
-    else
-    {
-      WinHide, %winTitle%
-      WinActivate ahk_class Shell_TrayWnd
-      return
-    }
+    ShowOrHideApp(winTitle)
+    return
   }
 
+  lastAppWinTitle := GetWintitleActive()
 
-  ;;; 如果有多个窗口，来回显示该窗口
-  if (windowsCount > 1 )
+  OutputDebug, % "OpenOrShowApp => lastAppWinTitle:=" lastAppWinTitle " winTitle:=" winTitle
+  ;;; 从其他程序切回来，返回上次的窗口
+  ;;; 否则在该程序多个窗口，来回显示该窗口
+  ;;; 微软的一些程序像（便笺）要构造特别的 winTitle
+  ;;; 这里不能直接比较 lastAppWinTitle 和 winTitle 的值
+  if(!IsSameApp(winTitle, lastAppWinTitle))
   {
+    OutputDebug, % "OpenOrShowApp => show next app which has multiple window by winTitle"
+    ShowApp(winTitle)
+  }
+  else
+  {
+    OutputDebug, % "OpenOrShowApp => show next window "
     winActivateBottom, % winTitle
   }
 
-  tail.call("true")
-  Chinese()			; 激活输入法,至于输入法由小狼毫来选择
+  ;;; 在同个程序里切换不语音提示
+  ;tail.call("true")
+  ;chinese.call()			; 激活输入法,至于输入法由小狼毫来选择
 
 }
 
@@ -91,13 +135,21 @@ OpenOrShowApp:
 }
 ;}}}
 
-GetProgramInfo(){
+GetWintitleActive(){
   WinGet,processName,ProcessName,A
   WinGetClass, className, A
   WinGet,processPath,ProcessPath,A
-
   winTitle := Format("ahk_exe {1} ahk_class {2}", processName, className)
+  return winTitle
+}
 
+GetProgramInfo(){
+  OutputDebug, "Start get programinf"
+  WinGet,processName,ProcessName,A
+  WinGetClass, className, A
+  WinGet,processPath,ProcessPath,A
+  winTitle := Format("ahk_exe {1} ahk_class {2}", processName, className)
+  OutputDebug, %winTitle%
   result := Format("""{3}"",""{1}"",""{2}"",""""", winTitle, StrReplace(processPath, "\","\\"), processName)
 
   clipboard := result

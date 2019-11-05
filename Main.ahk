@@ -62,11 +62,11 @@ return
 
 ; test
 #a::
-msgbox % Mod(-12,8)
+KeyChordUntilEndChar(Func("ControlWindow"), [wm2x4])
 return
 
 #o::
-KeyChordUntilEndChar(Func("ControlWindow"), [wm2x4])
+WaitChar(Func("ControlWindow"), [wm2x4])
 return
 
 #1::
@@ -130,7 +130,7 @@ $#'::
 CloseWindow()
 return
 
-F7::
+^!8::
 GetProgramInfo()
 return
 
