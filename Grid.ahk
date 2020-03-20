@@ -138,14 +138,24 @@ Class Grid{
     this.MoveTo(no)
   }
 
+  MoveWindow(monitor, no, winWidth, winHeight, WinTitle:="A"){
+    ;; 获得格子宽度和高度
+    width := monitor.width/this.column			   ;cell width
+    height:= (monitor.heightEx-this.marginTop)/this.row ;cell height
+    ;;; 获取 no 的行和列的坐标
+    row := floor((no-1) / this.column)			   ; Grid row
+    column := mod((no-1), this.column)	    ; Grid column
+    ;;; 获得瞄准的格子坐标
+    x := column * width + monitor.left + 10		   ;offest x
+    y := row * height + monitor.top  + 10 + this.marginTop		;offset y
+
+    WinMove, % WinTitle,,x,y,winWidth,winHeight
+  }
+
   MoveToMonitorEx(monitor,no,unitx:=1,unity:=1,WinTitle:="A"){
     width := monitor.width/this.column			   ;cell width
     height:= (monitor.heightEx-this.marginTop)/this.row ;cell height
-    row := floor((no-1) / this.column)			   ; Grid row
-    column := mod((no-1), this.column)	    ; Grid column
-    x := column * width + monitor.left + 10		   ;offest x
-    y := row * height + monitor.top  + 10 + this.marginTop		;offset y
-    WinMove,% WinTitle,,x,y,unitx*width-20, unity*height-20
+    this.MoveWindow(monitor,no, unitx*width -20, unity*height-20,WinTitle)
     ShowIndicator(this.GetWindowNo())
   }
 
@@ -165,7 +175,7 @@ Class Grid{
   }
 
   MoveTo(no){
-    if (no > 0 && no <= this.row * this.column)
+    if(no > 0 && no <= this.row * this.column)
     {
       this.MoveToMonitor(MonitorDetect.Current,no)
     }

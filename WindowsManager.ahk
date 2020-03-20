@@ -10,6 +10,9 @@ actionMap["u"] := "Middle"
 actionMap["e"] := "FullScreen"
 actionMap["g"] := "PrevMonitor"
 actionMap["r"] := "NextMonitor"
+actionMap["."] := Func("IncreaseTransparent")
+actionMap[","] := Func("DecreaseTransparent")
+
 
 ControlWindow(params)
 {
@@ -21,10 +24,19 @@ ControlWindow(params)
   ; msgbox % action " -" actionMap["c"]
   if (action)
   {
-    OutputDebug, % action
-    ObjBindMethod(wm, action).call()
-    CursorTail()
+    if(action.name)
+    {
+      action.call()
+    }
+    else
+    {
+      OutputDebug, % action
+      ObjBindMethod(wm, action).call()
+      CursorTail()
+    }
   }
+  else if (char = "l")
+    Reload
   else
   {
     wm.MoveTo(char)

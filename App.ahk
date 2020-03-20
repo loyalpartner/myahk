@@ -7,10 +7,10 @@
 ; 将图标拖到桌面，右键查看
 ; 注意： 带有中文的 ahk 文件要保存未 utf8-bom 形式，否则会有各种意想不到的错误
 programs := {}
-programs["^!h"] := ["emacs.exe","ahk_exe emacs.exe ahk_class Emacs", "C:\\Program Files (x86)\\Emacs\\i686\\bin\\emacs.exe",""]
+programs["^!h"] := ["emacs.exe","ahk_exe emacs-w32.exe ahk_class Emacs", "C:\\Program Files (x86)\\Emacs\\i686\\bin\\emacs.exe",""]
 programs["^!d"] := ["chrome.exe","ahk_exe chrome.exe ahk_class Chrome_WidgetWin_1", "C:\\Users\\li\\scoop\\apps\\googlechrome\\76.0.3809.132\\chrome.exe",""]
-programs["^!s"] := ["msedge.exe","ahk_exe msedge.exe ahk_class Chrome_WidgetWin_1","C:\\Program Files (x86)\\Microsoft\\Edge Beta\\Application\\msedge.exe",""]
-programs["^!t"] := ["Explorer.EXE","ahk_exe Explorer.EXE ahk_class CabinetWClass", "C:\\Windows\\explorer.exe",""]
+programs["^!t"] := ["msedge.exe","ahk_exe msedge.exe ahk_class Chrome_WidgetWin_1","C:\\Program Files (x86)\\Microsoft\\Edge Beta\\Application\\msedge.exe",""]
+programs["^!s"] := ["Explorer.EXE","ahk_exe Explorer.EXE ahk_class CabinetWClass", "C:\\Windows\\explorer.exe",""]
 programs["^!n"] := ["WindowsTerminal.exe","ahk_exe WindowsTerminal.exe ahk_class CASCADIA_HOSTING_WINDOW_CLASS", "explorer.exe shell:Appsfolder\Microsoft.WindowsTerminal_8wekyb3d8bbwe!App",""]
 programs["^!w"] := ["微信","ahk_exe WeChatStore.exe ahk_class WeChatMainWndForStore", "explorer.exe shell:Appsfolder\TencentWeChatLimited.forWindows10_sdtnhv12zgd7a!TencentWeChatLimited.forWindows10",""]
 programs["^!g"] := ["XiamiPC.exe","ahk_exe XiamiPC.exe ahk_class XiamiHome","C:\\Program Files (x86)\\Xiami\\XiamiPC.exe",""]

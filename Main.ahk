@@ -15,7 +15,6 @@ Menu, Tray, Icon,emacs.png
 
 wm := New Grid()
 wm2x4 := New Grid(2,4)
-grid := wm
 
 currentMonitor := MonitorDetect.Current
 winposinfo := {}
@@ -100,10 +99,15 @@ CursorTail()
 return
 
 $#9::
-wm.MoveAppTo(2,"ahk_exe WindowsTerminal.exe")
-wm.MoveAppTo(1,"ahk_exe Explorer.EXE ahk_class CabinetWClass")
-wm.MoveAppTo(3,"ahk_class Chrome_WidgetWin_1")
-wm2x4.MoveAppTo(8,"ahk_exe emacs.exe")
+wm.MoveAppTo(1,"ahk_exe WindowsTerminal.exe")
+wm.MoveAppTo(3,"ahk_exe Explorer.EXE ahk_class CabinetWClass")
+wm.MoveAppTo(2,"ahk_class Chrome_WidgetWin_1")
+WinGet, idList, List, ahk_exe emacs.exe
+Loop %idList%
+{
+  id := idList%A_Index%
+  wm2x4.MoveAppTo(wm2x4.gridCount+1-A_Index, "ahk_id " . id)
+}
 return
 
 $#7::
