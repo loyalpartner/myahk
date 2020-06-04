@@ -14,7 +14,7 @@ Menu, Tray, Icon,emacs.png
 #Include WindowsManager.ahk
 ;#Include Input.ahk
 
-wm := New Grid()
+wm := New Grid(1,3)
 wm2x4 := New Grid(2,4)
 
 currentMonitor := MonitorDetect.Current
@@ -25,7 +25,7 @@ winposinfo := {}
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; 重置配置和编辑配置文件 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-f12::
+^!]::
 reload
 return
 
@@ -152,45 +152,17 @@ return
 GetProgramInfo()
 return
 
-; RWin::
-; Send {AppsKey}
-; return
-#IfWinActive,ahk_exe everything.exe
-^1::
-Send {AppsKey}
-return
-#IfWinActive
 #IfWinActive,ahk_class Chrome_WidgetWin_1
-^n::
-Send {Down}
-return
-^p::
-Send {up}
-return
+^n:: Send {Down} return
+^p:: Send {up} return
 #IfWinActive
-
-
 
 #If,WinActive("ahk_class X410_XAppWin")
 AppsKey::RControl
 #If
+
 #If, !WinActive("ahk_class Emacs")
 AppsKey::RWin
 #IF
-
-;$!2::
-;ControlClick,,ahk_class Chrome_WidgetWin_1,,WheelDown
-;return
-;$!1::
-;ControlClick,,ahk_class Chrome_WidgetWin_1,,WheelUp
-;return
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; EmacsMode switch
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-^!9::
-reverse_mode := !reverse_mode
-if(reverse_mode)
-  trayTip, ReverseMode, ReverseMode, 1
-return
 
 ;#Include EmacsKey.ahk

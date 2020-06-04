@@ -38,91 +38,23 @@ SwitchApp(params){
   OpenOrShowApp(app)
 }
 
-ShowApp(winTitle){
-  global tail, chinese, showIndicator
-  OutputDebug, % "Show window "  winTitle
-  ; 理想情况应该是调用 WinActivate ，激活窗口
-  ; 可是虾米音乐显示不出来
-  winShow, %winTitle%
-  winActivate, %winTitle%
-
-  showIndicator.call()
-  tail.call("true")
-  chinese.call()
-}
-
-ShowOrHideApp(winTitle){
-  global lastAppWinTitle
-    ; hide and show window http://www.leporelo.eu/blog.aspx?id=hide-and-show-powershell-console-via-autohotkey
-    IfWinNotActive, % winTitle
-    {
-      lastAppWinTitle :=   GetWintitleActive()
-      ShowApp(winTitle)
-    }
-    else
-    {
-      OutputDebug, % "Hide window "  winTitle
-      WinHide, %winTitle%
-      ;WinActivate ahk_class Shell_TrayWnd
-      ;OutputDebug, % "lastAppWinTitle " lastAppWinTitle
-      ShowApp(lastAppWinTitle)
-    }
-}
-
-IsSameApp(appTitle1, appTitle2){
-  StringGetPos, pos, % appTitle2, % appTitle1
-  return pos >=0
-}
-
 OpenOrShowApp(app){
 
   global lastAppWinTitle
+  global showIndicator
 
   appTitle := app[4]
   winTitle := appTitle ? appTitle . " " . app[2]: app[2]
 ;  msgbox, %wintitle%
   appPath := app[3]
-  ;appInputSource := app[4]
 
-  OutputDebug, "start open or show app"
-  DetectHiddenWindows, On
-  WinGet, windowsCount, Count,  %winTitle%
-  OutputDebug, % winTitle " match " windowsCount
-
-  if (windowsCount <= 0 )
-  {
-    Run %appPath%
-    return
-  }
-
-  if (windowsCount = 1)
-  {
-    ShowOrHideApp(winTitle)
-    return
-  }
-
-  lastAppWinTitle := GetWintitleActive()
-
-  OutputDebug, % "OpenOrShowApp => lastAppWinTitle:=" lastAppWinTitle " winTitle:=" winTitle
-  ;;; 从其他程序切回来，返回上次的窗口
-  ;;; 否则在该程序多个窗口，来回显示该窗口
-  ;;; 微软的一些程序像（便笺）要构造特别的 winTitle
-  ;;; 这里不能直接比较 lastAppWinTitle 和 winTitle 的值
-  if(!IsSameApp(winTitle, lastAppWinTitle))
-  {
-    OutputDebug, % "OpenOrShowApp => show next app which has multiple window by winTitle"
-    ShowApp(winTitle)
-  }
-  else
-  {
-    OutputDebug, % "OpenOrShowApp => show next window "
+  if WinExist(winTitle) {
     winActivateBottom, % winTitle
+  }else{
+    Run %appPath%
   }
 
-  ;;; 在同个程序里切换不语音提示
-  ;tail.call("true")
-  ;chinese.call()			; 激活输入法,至于输入法由小狼毫来选择
-
+  showIndicator.call()
 }
 
 Init()
@@ -151,6 +83,7 @@ GetWintitleActive(){
   winTitle := Format("ahk_exe {1} ahk_class {2}", processName, className)
   return winTitle
 }
+
 
 GetProgramInfo(){
   OutputDebug, "Start get programinf"
