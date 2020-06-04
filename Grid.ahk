@@ -158,6 +158,7 @@ Class Grid{
     height:= (monitor.heightEx-this.marginTop)/this.row ;cell height
     this.MoveWindow(monitor,no, unitx*width -20, unity*height-20,WinTitle)
     ShowIndicator(this.GetWindowNo())
+    CursorTail()
   }
 
   MoveToMonitor(monitor,no)  {

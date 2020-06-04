@@ -82,34 +82,28 @@ return
 ;WaitChar(Func("ControlWindow"), [wm2x4])
 ;return
 
-#1::
+$#1::
 wm.MoveTo(1)
-CursorTail()
 return
 
-#2::
+$#2::
 wm.MoveTo(2)
-CursorTail()
 return
 
-#3::
+$#3::
 wm.MoveTo(3)
-CursorTail()
 return
 
-#4::
+$#4::
 wm.MoveTo(4)
-CursorTail()
 return
 
 $#5::
 wm.Middle()
-CursorTail()
 return
 
 $#6::
 wm.FullScreen()
-CursorTail()
 return
 
 $#9::
@@ -159,6 +153,12 @@ return
 
 #If,WinActive("ahk_class X410_XAppWin")
 AppsKey::RControl
+~AppsKey & 1:: wm.MoveTo(1) return
+~AppsKey & 2:: wm.MoveTo(2) return
+~AppsKey & 3:: wm.MoveTo(3) return
+~AppsKey & 4:: wm.MoveTo(4) return
+~AppsKey & 5:: wm.Middle() return
+~AppsKey & 6:: wm.FullScreen() return
 #If
 
 #If, !WinActive("ahk_class Emacs")
