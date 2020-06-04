@@ -11,10 +11,11 @@ CreateGUI() {
     WinSet, Transparent, 200
 }
 
-ShowIndicator(text:="^") {
+ShowIndicator(text:="^", delay:=500) {
     WinGetPos, x, y, width, height, A
-    if !x
-	throw
+    if !x {
+       return
+    }
 
     text_w := (ActWin_W > A_ScreenWidth) ? A_ScreenWidth : ActWin_W
     GuiControl,     , HotkeyText, % text
@@ -25,7 +26,7 @@ ShowIndicator(text:="^") {
     gui_y := y + height/2 - 150
     Gui, Show, NoActivate x%gui_x% y%gui_y% h100 w100
 
-    SetTimer HideGui, 500
+    SetTimer HideGui, %delay%
 }
 
 CreateGUI()

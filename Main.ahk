@@ -1,3 +1,4 @@
+
 ;;# -*- mode: ahk; ahk-indentation: 2;  -*-
 #singleinstance force
 
@@ -24,7 +25,7 @@ winposinfo := {}
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; 重置配置和编辑配置文件 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-^!f12::
+f12::
 reload
 return
 
@@ -55,18 +56,31 @@ wm.MoveToMonitor(MonitorDetect.Next,1)
 CursorTail()
 return
 
-!Tab::
-WaitChar(Func("SwitchApp"),[])
-return
+;!Tab::
+;WaitChar(Func("SwitchApp"),[])
+;return
+; 连续按2此 Ctrl 切换程序
+; ~LControl::
+; if (A_PriorHotkey <> "~LControl" or A_TimeSincePriorHotkey > 300)
+; {
+; ; Too much time between presses, so this isn't a double-press.
+; KeyWait, LControl
+; return
+; }
+; ;MsgBox You double-pressed the right control key.
+; ShowIndicator("X", 50000)
+; WaitChar(Func("SwitchApp"),[])
+; Hidegui()
+; return
 
 ; test
-#a::
-KeyChordUntilEndChar(Func("ControlWindow"), [wm2x4])
-return
+;#a::
+;KeyChordUntilEndChar(Func("ControlWindow"), [wm2x4])
+;return
 
-#o::
-WaitChar(Func("ControlWindow"), [wm2x4])
-return
+;#o::
+;WaitChar(Func("ControlWindow"), [wm2x4])
+;return
 
 #1::
 wm.MoveTo(1)
@@ -155,12 +169,21 @@ Send {up}
 return
 #IfWinActive
 
-$!2::
-ControlClick,,ahk_class Chrome_WidgetWin_1,,WheelDown
-return
-$!1::
-ControlClick,,ahk_class Chrome_WidgetWin_1,,WheelUp
-return
+
+
+#If,WinActive("ahk_class X410_XAppWin")
+AppsKey::RControl
+#If
+#If, !WinActive("ahk_class Emacs")
+AppsKey::RWin
+#IF
+
+;$!2::
+;ControlClick,,ahk_class Chrome_WidgetWin_1,,WheelDown
+;return
+;$!1::
+;ControlClick,,ahk_class Chrome_WidgetWin_1,,WheelUp
+;return
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; EmacsMode switch
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
