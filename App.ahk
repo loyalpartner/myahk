@@ -8,20 +8,21 @@
 ; 将图标拖到桌面，右键查看
 ; 注意： 带有中文的 ahk 文件要保存未 utf8-bom 形式，否则会有各种意想不到的错误
 programs := {}
-;programs["^!h"] := ["emacs.exe","ahk_exe X410.exe ahk_class X410_XAppWin", "C:\\Program Files (x86)\\Emacs\\i686\\bin\\emacs.exe",""]
+
+wow_path = "C:\\Program Files (x86)\\World of Warcraft\\_classic_\\WowClassic.exe"
+chrome_path = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+explorer_path = "C:\\windows\explorer.exe"
 programs["^!h"] := ["emacs.exe","ahk_exe X410.exe ahk_class X410_XAppWin", "Emacs.vbs",""]
-;programs["^!h"] := ["emacs.exe","ahk_class Emacs","C:\\Program Files\\Emacs\\x86_64\\bin\\emacs.exe",""]
-;programs["^!u"] := ["WowClassic.exe","ahk_exe WowClassic.exe ahk_class GxWindowClass","C:\\Program Files (x86)\\World of Warcraft\\_classic_\\WowClassic.exe",""]
-;programs["^!d"] := ["chrome.exe","ahk_exe chrome.exe ahk_class Chrome_WidgetWin_1", "C:\\Users\\li\\scoop\\apps\\googlechrome\\76.0.3809.132\\chrome.exe",""]
-;programs["^!t"] := ["msedge.exe","ahk_exe msedge.exe ahk_class Chrome_WidgetWin_1","C:\\Program Files (x86)\\Microsoft\\Edge Beta\\Application\\msedge.exe",""]
-programs["^!t"] := ["chrome.exe","ahk_exe chrome.exe ahk_class Chrome_WidgetWin_1","C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",""]
-programs["^!s"] := ["Explorer.EXE","ahk_exe Explorer.EXE ahk_class CabinetWClass", "C:\\Windows\\explorer.exe",""]
+
+; programs["^!u"] := ["WowClassic.exe","ahk_exe WowClassic.exe ahk_class GxWindowClass",wow_path,""]
+programs["^!t"] := ["chrome.exe","ahk_exe chrome.exe ahk_class Chrome_WidgetWin_1",chrome_path,""]
+programs["^!s"] := ["Explorer.EXE","ahk_exe Explorer.EXE ahk_class CabinetWClass", explorer_path,""]
 programs["^!n"] := ["WindowsTerminal.exe","ahk_exe WindowsTerminal.exe ahk_class CASCADIA_HOSTING_WINDOW_CLASS", "explorer.exe shell:Appsfolder\Microsoft.WindowsTerminal_8wekyb3d8bbwe!App",""]
 ;programs["^!i"] := ["devenv.exe","ahk_exe devenv.exe ahk_class HwndWrapper[DefaultDomain;;e224e650-3172-494c-bb8f-49edb9f395cb]","C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\devenv.exe",""]
 programs["^!w"] := ["微信","ahk_exe WeChatStore.exe ahk_class WeChatMainWndForStore", "explorer.exe shell:Appsfolder\TencentWeChatLimited.forWindows10_sdtnhv12zgd7a!TencentWeChatLimited.forWindows10",""]
 programs["^!g"] := ["XiamiPC.exe","ahk_exe XiamiPC.exe ahk_class XiamiHome","C:\\Program Files (x86)\\Xiami\\XiamiPC.exe",""]
 programs["^!r"] := ["hh.exe","ahk_exe hh.exe ahk_class HH Parent","C:\\Windows\\hh.exe",""]
-programs["^!m"] := ["Nuts.exe","ahk_exe Nuts.exe ahk_class Qt5QWindowIcon","C:\\Program Files (x86)\\Nuts\\Nuts.exe",""]
+programs["^!m"] := ["nvim-qt.exe","ahk_exe nvim-qt.exe ahk_class Qt5QWindowIcon","C:\\Users\\li\\scoop\\apps\\neovim-nightly\\nightly-20190821\\bin\\nvim-qt.exe",""]
 programs["^!c"] := ["anki.exe","ahk_exe anki.exe ahk_class Qt5QWindowIcon","C:\\Program Files\\Anki\\anki.exe",""]
 programs["^!v"] := ["Kindle.exe","ahk_exe Kindle.exe ahk_class Qt5QWindowIcon","C:\\Program Files (x86)\\Amazon\\Kindle\\Kindle.exe",""]
 programs["^!z"] :=["ApplicationFrameHost.exe","ahk_exe ApplicationFrameHost.exe ahk_class ApplicationFrameWindow","explorer.exe shell:Appsfolder\Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe!App","便笺"]
