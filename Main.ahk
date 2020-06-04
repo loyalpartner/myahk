@@ -56,24 +56,6 @@ wm.MoveToMonitor(MonitorDetect.Next,1)
 CursorTail()
 return
 
-;!Tab::
-;WaitChar(Func("SwitchApp"),[])
-;return
-; 连续按2此 Ctrl 切换程序
-; ~LControl::
-; if (A_PriorHotkey <> "~LControl" or A_TimeSincePriorHotkey > 300)
-; {
-; ; Too much time between presses, so this isn't a double-press.
-; KeyWait, LControl
-; return
-; }
-; ;MsgBox You double-pressed the right control key.
-; ShowIndicator("X", 50000)
-; WaitChar(Func("SwitchApp"),[])
-; Hidegui()
-; return
-
-; test
 ;#a::
 ;KeyChordUntilEndChar(Func("ControlWindow"), [wm2x4])
 ;return
@@ -82,29 +64,12 @@ return
 ;WaitChar(Func("ControlWindow"), [wm2x4])
 ;return
 
-$#1::
-wm.MoveTo(1)
-return
-
-$#2::
-wm.MoveTo(2)
-return
-
-$#3::
-wm.MoveTo(3)
-return
-
-$#4::
-wm.MoveTo(4)
-return
-
-$#5::
-wm.Middle()
-return
-
-$#6::
-wm.FullScreen()
-return
+#1:: wm.MoveTo(1)
+#2:: wm.MoveTo(2)
+#3:: wm.MoveTo(3)
+#4:: wm.MoveTo(4)
+#5:: wm.Middle()
+#6:: wm.FullScreen()
 
 $#9::
 wm.MoveAppTo(1,"ahk_exe WindowsTerminal.exe")
