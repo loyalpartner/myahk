@@ -62,18 +62,18 @@ $#':: CloseWindow()
 ^!8:: GetProgramInfo()
 
 #IfWinActive,ahk_class Chrome_WidgetWin_1
-^n:: Send {Down} return
-^p:: Send {up} return
+^n:: Send {Down}
+^p:: Send {up}
 #IfWinActive
 
 #If,WinActive("ahk_class X410_XAppWin")
 AppsKey::RControl
-~AppsKey & 1:: wm.MoveTo(1) return
-~AppsKey & 2:: wm.MoveTo(2) return
-~AppsKey & 3:: wm.MoveTo(3) return
-~AppsKey & 4:: wm.MoveTo(4) return
-~AppsKey & 5:: wm.Middle() return
-~AppsKey & 6:: wm.FullScreen() return
+~AppsKey & 1:: wm.MoveTo(1)
+~AppsKey & 2:: wm.MoveTo(2)
+~AppsKey & 3:: wm.MoveTo(3)
+~AppsKey & 4:: wm.MoveTo(4)
+~AppsKey & 5:: wm.Middle()
+~AppsKey & 6:: wm.FullScreen()
 #If
 
 #If, !WinActive("ahk_class Emacs")
